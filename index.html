@@ -6,83 +6,111 @@
     <link rel="stylesheet" href="https://wondaero.github.io/assets/css/normalize.css" >
     <title>2z-form</title>
     <style>
-        html, body{
-            /* width: 100%;
-            height: 100%; */
-        }
         .none{display: none;}
         .txt-c{text-align: center;}
-        .wrapper{
-            width: 620px;
-            height: 877px;
+
+        body{
+            /* display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; */
+        }
+        header{
+            text-align: right;
+            width: 100%;
             padding: 20px;
             box-sizing: border-box;
         }
-        header{
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        header button{
+            border: 0;
+            background: rgba(0, 0, 255, .4);
+            width: 100px;
+            height: 50px;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .wrapper{
+            width: 620px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1{
+            margin: 0;
             margin-bottom: 15px;
+            text-align: center;
         }
-        header h1{margin: 0;}
-        header img{
-            position: absolute;
-            right: 30px;
-        }
-        .table1 .table-top{
+        .section1 .table-top{
             margin-bottom: 10px;
         }
-        .table1 .table-top input{
+        .section1 input, footer input{
             border: 0;
             border-bottom: 1px solid #000;
-            width: 50px;
+            width: 80px;
         }
-        .table1 .table-top > div{
+        input[type="date"]{width: 120px; text-align: center;}
+        input[type="time"]{width: 115px; text-align: center;}
+        .section1 .table-top > div{
             display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 10px;
         }
-        .table1 .table-top .right{
-            margin-left: 30px;
+        .section1 .table-top > div > div{
+            margin-right: 10px;
         }
-        .table1 .table-top span{
+        .section1 .table-top > div > div:last-of-type{
+            margin-right: 0;
+        }
+        .section1 .table-top .where{
+            width: 100px;
+        }
+        .section1 .table-top span,
+        footer span{
             font-weight: 900;
         }
-        .table1 .table-top h3{
+        .section1 .table-top h3{
             text-align: center;
             margin: 0;
             font-size: 1rem;
         }
-        .table1 .table-top h3 strong{
+        .section1 .table-top h3 strong{
             font-size: 1.125rem;
         }
-        .table1 table{
+        .section1 table{
             border-collapse: collapse;
             width: 100%;
             table-layout: fixed;
-            border: 2px solid #000;
+            border: 3px solid #000;
         }
-        .table1 table thead tr{
-            border: 2px solid #000;
+        .section1 table thead tr{
+            border: 3px solid #000;
             background: rgba(0, 0, 255, .1);
         }
-        .table1 table thead tr th{
+        .section1 table thead tr th{
             border: 1px solid #000;
         }
-        .table1 table tbody tr td{
+        .section1 table tbody tr td{
             padding: 5px 2px;
             border: 1px solid #000;
         }
-        .table1 table tbody tr td input[type="text"]{
+        .section1 table tbody tr input[type="checkbox"]{
+            width: 30px;
+            height: 30px;
+            background: #fff;
+        }
+        .section1 table tbody tr div[contenteditable]{
             width: 100%;
             box-sizing: border-box;
+            resize: none;
+            height: 32px;
+            border: 1px solid #000;
         }
         
-        .table2 h3{
+        .section2 h3{
             font-size: 1rem;
         }
-        .table2 .diamond{
+        .section2 .diamond{
             width: 10px;
             height: 10px;
             display: inline-block;
@@ -92,31 +120,112 @@
             position: relative;
             top: -3px;
         }
+        .section2{
+            margin-bottom: 15px;
+        }
+        .section2 h3{
+            font-size: 1rem;
+        }
+        .section2 .diamond{
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            vertical-align: middle;
+            transform: rotate(45deg);
+            background: #000;
+            position: relative;
+            top: -3px;
+        }
+
+        .section2 table{
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+            border: 3px solid #000;
+        }
+        .section2 table thead tr{
+            border: 3px solid #000;
+            background: rgba(0, 0, 255, .1);
+        }
+        .section2 table thead tr th{
+            border: 1px solid #000;
+        }
+        .section2 table tbody tr td{
+            padding: 5px 2px;
+            border: 1px solid #000;
+        }
+        .section2 table tbody tr div[contenteditable]{
+            width: 100%;
+            padding-top: 5px;
+            box-sizing: border-box;
+            resize: none;
+            height: 32px;
+            border: 1px solid #000;
+        }
+        .section3 h3{
+            font-size: 1rem;
+        }
+        .section3 div[contenteditable]{
+            width: 100%;
+            box-sizing: border-box;
+            resize: none;
+            height: 80px;
+            border: 3px solid #000;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        footer{padding-bottom: 20px;}
+        footer > div{display: flex; margin-bottom: 10px;}
+        footer > div:last-of-type{margin-bottom:0; display: flex; align-items: center;}
+        footer > div:last-of-type span{margin-right: 5px;}
+        footer > div > div{margin-right: 10px; display: flex; align-items: center;}
+        footer > div > div > *:first-child{margin-right: 5px;}
+        footer > div > div:last-of-type{margin-right: 0;}
+        footer .where{width: 300px;}
+
+        [data-id="border-hidden"].on{
+            border: 0!important;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <button id="btnCapture">SAVE</button>
+    </header>
     <div id="wrapper" class="wrapper">
-        <header>
-            <h1>목자 주간 리포트</h1>
-            <img src="" alt="로고">
-        </header>
-        <!-- <div class="top"></div> -->
-        <div class="table1">
+        <h1>목자 주간 리포트</h1>
+        <div class="section1">
             <div class="table-top">
                 <div>
-                    <input /><span>지구</span>
-                    <input /><span>마을</span>
-                    <input /><span>목장</span>
-                    <div class="right">
-                        <span>목자 : </span><input />
+                    <div>
+                        <input type="text">
+                        <span>지구</span>
+                    </div>
+                    <div>
+                        <input type="text">
+                        <span>마을</span>
+                    </div>
+                    <div>
+                        <input type="text">
+                        <span>목장</span>
+                    </div>
+                    <div>
+                        <span>목자:</span>
+                        <input type="text" class="where">
                     </div>
                 </div>
                 <div>
-                    <span>모임일 : </span>
-                    <input type="date" />
-                    <span>시간</span><input />
+                    <div>
+                        <span>모임일: </span>
+                        <input type="date" />
+                    </div>
+                    <div>
+                        <span>시간: </span>
+                        <input type="time"/>
+                    </div>
                     <div class="right">
-                        <span>모인곳 : </span><input />
+                        <span>모인곳:</span>
+                        <input class="where" />
                     </div>
                 </div>
                 <h3>목자는 본 리포트를 작성하여, <strong>목자모임 시 꼭 마을장에게</strong> 제출해 주세요.</h3>
@@ -142,161 +251,176 @@
                 <tbody>
                     <tr>
                         <td class="txt-c">1</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">2</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">3</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">4</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">5</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">6</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">7</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">8</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">9</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">10</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">11</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                     <tr>
                         <td class="txt-c">12</td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                         <td class="txt-c"><input type="checkbox"/></td>
                         <td class="txt-c"><input type="checkbox"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text" /></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="table2">
+        <div class="section2">
             <h3><span class="diamond"></span> 목장원 가정의 특이사항(원, 경조사, 새교우, 이사 주소, 전화번호 변경등)</h3>
             <table>
                 <colgroup>
+                    <col width="100">
+                    <col>
                 </colgroup>
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th>이름</th>
+                        <th>내 용</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                        <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="table3">
-            <table>
-                <colgroup>
-                </colgroup>
-                <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="section3">
+            <h3>평가 간증 문제점 건의사항</h3>
+            <div oninput="resizeTxtarea(this, 80)" contenteditable="true"></div>
         </div>
+        <footer>
+            <div>
+                <div>
+                    <span>다음 모임일:</span>
+                    <input type="date">
+                    <span id="week"></span>
+                </div>
+                <div>
+                    <span>시간:</span>
+                    <input type="time" />
+                </div>
+            </div>
+            <div>
+                <span>장소:</span>
+                <input type="text" class="where"/>
+            </div>
+        </footer>
     </div>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        const resizeTxtarea = (trg, size) => {
+            trg.style.height = size + 'px';
+            trg.style.height = (trg.scrollHeight + 3) + 'px';
+        }
+
+        btnCapture.addEventListener('click', () => {
+
+            document.querySelectorAll('[data-id="border-hidden"]').forEach((tag) => {
+                tag.classList.add('on');
+            })
+            html2canvas(wrapper).then(function(canvas) {
+                document.querySelectorAll('[data-id="border-hidden"]').forEach((tag) => {
+                    tag.classList.remove('on');
+                })
+                const link = document.createElement('a');
+                link.download = 'captured_image.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            })
+    });
+    </script>
 </body>
 </html>
