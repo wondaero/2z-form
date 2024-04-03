@@ -6,10 +6,41 @@
     <link rel="stylesheet" href="https://wondaero.github.io/assets/css/normalize.css" />
     <title>신동탄 목장 웹페이지</title>
     <style>
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+            font-weight: 800;
+            font-style: normal;
+        }
+
+        body{font-family: 'Pretendard';}
         .none{display: none;}
         .txt-c{text-align: center;}
 
-        
         .wrapper{
             width: 620px;
         }
@@ -99,6 +130,9 @@
             border: 1px solid #bbb;
             border-radius: 3px;
         }
+        table tbody tr div[contenteditable]:focus{
+            background: #eee;
+        }
 
 
         .section1 .table-top{
@@ -109,6 +143,7 @@
             border-bottom: 1px solid #000;
             border-radius: 0;
             width: 80px;
+            text-align: center;
         }
         input[type="date"]{width: 120px; text-align: center; background: #fff;}
         input[type="time"]{width: 115px; text-align: center; background: #fff;}
@@ -131,6 +166,10 @@
         .section4 span{
             font-weight: 900;
         }
+        .section1 .table-top div.week span {
+            font-weight: normal;
+        }
+
         .section1 .table-top h3{
             text-align: center;
             margin: 0;
@@ -171,18 +210,6 @@
             top: -3px;
         }
 
-        .section3 h3{
-            font-size: 1rem;
-        }
-        .section3 div[contenteditable]{
-            width: 100%;
-            box-sizing: border-box;
-            resize: none;
-            height: 80px;
-            border: 1px solid #000;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
         .section4{padding-bottom: 20px;}
         .section4 > div{display: flex; margin-bottom: 10px;}
         .section4 > div span{margin-right: 5px;}
@@ -193,6 +220,86 @@
         .section4 > div > div.week span{margin: 0; font-weight: normal;}
         .section4 > div > div.week.on{display: flex;}
 
+        .section8{
+            margin-bottom: 15px;
+        }
+        .section8 tbody tr td:first-of-type{
+            font-size: 12px;
+        }
+        .section8 thead tr{
+            background: 0;
+        }
+        .section8 thead tr th{
+            padding: 5px;
+        }
+        .section8 thead tr strong{
+            margin-left: 5px;
+        }
+        .section8 thead tr th > span{
+            margin-right: 12px;
+        }
+        .section8 thead tr th > span:last-of-type{
+            margin-right: 0;
+        }
+        .section8 thead tr th input{
+            width: 30px;
+            border-radius: 0;
+            border: 0;
+            border-bottom: 1px solid #000;
+            text-align: center;
+        }
+        .section8 tbody tr:first-of-type td:last-of-type:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .section8 tbody tr:first-of-type td:last-of-type{
+            vertical-align: top;
+            background: #fff;
+            position: relative;
+        }
+        .section8 tbody tr:first-of-type td:last-of-type strong{
+            /* background: red; */
+            margin-bottom: 5px;
+            display: block;
+        }
+        .section8 tbody tr:first-of-type td:last-of-type div[contenteditable="true"]{
+            height: 175px;
+        }
+        .section8 .score{
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        .section8 .score li{
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #ddd;
+            color: #777;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .section8 .score li.on{
+            background: orange;
+            color: #fff;
+            font-weight: 900;
+            box-shadow: 0 0 5px orange;
+        }
+        .section8 .score li:last-of-type{
+            margin-right: 0;
+        }
+        
         footer{
             border-top: 1px solid #ddd;
             margin-top: 20px;
@@ -221,15 +328,50 @@
             left: 0;
             right: 0;
             bottom: 0;
+            padding: 10px;
+            padding-top: 50px;
             z-index: 1;
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 10px;
         }
-        .dim-layer.on{
+        .dim-layer > div{
+            height: 100%;
             display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        .dim-layer .btn-close{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            vertical-align: top;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(45deg);
+        }
+        .dim-layer .btn-close:before{
+            background: #f00;
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 24px;
+            /* top: 0;
+            left: 0; */
+        }
+        .dim-layer .btn-close:after{
+            background: #f00;
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 4px;
+            /* top: 0;
+            left: 0; */
+        }
+        .dim-layer.on{display: flex;}
 
         [data-id="border-hidden"].on{
             border: 0!important;
@@ -237,7 +379,10 @@
     </style>
 </head>
 <body>
-    <aside id="dimLayer" class="dim-layer"></aside>
+    <aside id="dimLayer" class="dim-layer">
+        <span class="btn-close"></span>
+        <div id="imgSection"></div>
+    </aside>
     <div class="wrapper">
         <div id="wrapper" class="wrapper2">
             <h1>목자 주간 리포트</h1>
@@ -264,7 +409,10 @@
                     <div>
                         <div>
                             <span>모임일: </span>
-                            <input type="date" />
+                            <input type="date" oninput="setWeek(this, week1)"/>
+                        </div>
+                        <div id="week1" class="week">
+                            <span></span>
                         </div>
                         <div>
                             <span>시간: </span>
@@ -328,17 +476,106 @@
                     </tbody>
                 </table>
             </div>
-            <div class="section3">
-                <h3>평가 간증 문제점 건의사항</h3>
-                <div oninput="resizeTxtarea(this, 80)" contenteditable="true"></div>
+            <div class="section8">
+                <table>
+                    <colgroup>
+                        <col width="150">
+                        <col width="140">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th colspan="3">
+                                <span>총원:<strong id="totalCnt">0 명</strong></span>
+                                <span>출석:<strong id="chkedCnt">0 명</strong></span>
+                                <strong>0 명</strong>
+                                <span>방문자: <input type="text" />명</span>
+                                <span>방문사역자: <input type="text" />명</span>
+                                <span>어린이: <input type="text" />명</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>목</strong>장원들을 환영</td>
+                            <td>
+                                <ul data-id="score" class="score">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            </td>
+                            <td rowspan="6">
+                                <strong>평가, 간증, 문제점, 건의사항</strong>
+                                <div oninput="resizeTxtarea(this, 175)" contenteditable="true"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>장</strong>맛비 같은 찬양과 경배</td>
+                            <td>
+                                <ul data-id="score" class="score">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>교</strong>제(말씀)를 통한 삶 나눔</td>
+                            <td>
+                                <ul data-id="score" class="score">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>회</strong>원을 기도와 돌봄으로 섬김</td>
+                            <td>
+                                <ul data-id="score" class="score">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>모</strong>든 사람이 사역에 참여</td>
+                            <td>
+                                <ul data-id="score" class="score">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>임</strong>재하신 성령 안에서 마무리</td>
+                            <td>
+                                <ul data-id="score" class="score">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="section4">
                 <div>
                     <div>
                         <span>다음 모임일:</span>
-                        <input type="date" oninput="setWeek(this)">
+                        <input type="date" oninput="setWeek(this, week2)">
                     </div>
-                    <div id="week" class="week">
+                    <div id="week2" class="week">
                         <span></span>
                     </div>
                     <div>
@@ -381,19 +618,19 @@
 
                 dimLayer.classList.add('on');
 
-                dimLayer.innerHTML = '';
+                imgSection.innerHTML = '';
                 const img = document.createElement('img');
-                img.src = canvas.toDataURL();
+                img.src = canvas.toDataURL('image/png');
                 img.style[window.innerWidth > window.innerHeight ? 'height' : 'width'] = '100%';
 
-                dimLayer.appendChild(img);
+                imgSection.appendChild(img);
             })
         });
 
         dimLayer.addEventListener('click', (e) => {
-            if(e.target.id !== 'dimLayer') return;
+            if(e.target.nodeName === 'IMG') return;
 
-            dimLayer.innerHTML = '';
+            imgSection.innerHTML = '';
             dimLayer.classList.remove('on');
         })
 
@@ -401,10 +638,10 @@
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td class="txt-c">1</td>
-                <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32); setTotalCnt()" contenteditable="true"></div></td>
                 <td class="txt-c">
                     <label>
-                        <input type="checkbox"/>
+                        <input type="checkbox" oninput="setChkedCnt()"/>
                         <span></span>
                     </label>
                 </td>
@@ -433,16 +670,47 @@
             })
         }
 
-        function setWeek(e){
+        function setWeek(e, target){
             if(e.value){
                 const d = new Date(e.value);
-                week.classList.add('on');
-                week.querySelector('span').textContent = '(' + weekStr[d.getDay()] + ')';
+                target.classList.add('on');
+                target.querySelector('span').textContent = '(' + weekStr[d.getDay()] + ')';
             }else{
-                week.classList.remove('on');
-                week.querySelector('span').innerHTML = '';
+                target.classList.remove('on');
+                target.querySelector('span').innerHTML = '';
             }
         }
+
+        document.querySelectorAll('[data-id="score"]').forEach(sc => {
+            sc.querySelectorAll('li').forEach(li => {
+                li.addEventListener('click', () => {
+                    const isOn = li.classList.contains('on');
+                    sc.querySelectorAll('li').forEach((li2) => li2.classList.remove('on'));
+                    li.classList[!isOn ? 'add' : 'remove']('on');
+                })
+            });
+        })
+
+        function setChkedCnt(){
+            let chkedTotalCnt = 0;
+            table1tbody.querySelectorAll('tr').forEach(tr => {
+                const isChked = tr.querySelectorAll('td')[2].querySelector('input').checked;
+                if(isChked) chkedTotalCnt++;
+            })
+
+            chkedCnt.textContent = chkedTotalCnt + '명';
+        }
+
+        function setTotalCnt(){
+            let totalCnt2 = 0;
+            table1tbody.querySelectorAll('tr').forEach(tr => {
+                const val = tr.querySelectorAll('td')[1].querySelector('div').textContent;
+                if(val !== '') totalCnt2++;
+            })
+
+            totalCnt.textContent = totalCnt2 + '명';
+        }
+
     </script>
 </body>
 </html>
