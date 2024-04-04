@@ -48,6 +48,9 @@
             padding: 20px;
             box-sizing: border-box;
         }
+        .wrapper2.with-watermark{
+            background: url(./assets/img/logo_gray.jpg) no-repeat center/55%;
+        }
         h1{
             margin: 0;
             margin-bottom: 15px;
@@ -223,60 +226,91 @@
         .section8{
             margin-bottom: 15px;
         }
+        .section8 .table{
+            border: 1px solid #000;
+        }
         .section8 tbody tr td:first-of-type{
             font-size: 12px;
         }
-        .section8 thead tr{
+        .section8 .thead{
             background: 0;
-        }
-        .section8 thead tr th{
             padding: 5px;
+            border-bottom: 1px solid #000;
         }
-        .section8 thead tr strong{
+        .section8 .thead strong{
             margin-left: 5px;
         }
-        .section8 thead tr th > span{
+        .section8 .thead > span{
             margin-right: 12px;
         }
-        .section8 thead tr th > span:last-of-type{
+        .section8 .thead > span:last-of-type{
             margin-right: 0;
+
         }
-        .section8 thead tr th input{
+        .section8 .thead input{
             width: 30px;
             border-radius: 0;
             border: 0;
             border-bottom: 1px solid #000;
             text-align: center;
         }
-        .section8 tbody tr:first-of-type td:last-of-type:before{
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
+        .section8 .tbody{
+            display: flex;
         }
-        .section8 tbody tr:first-of-type td:last-of-type{
-            vertical-align: top;
-            background: #fff;
-            position: relative;
+        .section8 .tbody > ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
         }
-        .section8 tbody tr:first-of-type td:last-of-type strong{
-            /* background: red; */
+        .section8 .tbody > ul > li{
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #000;
+        }
+        .section8 .tbody > ul > li:last-of-type{
+            border-bottom: 0;
+        }
+        .section8 .tbody > ul > li > span{
+            width: 150px; 
+            padding: 0 5px;
+            font-size: 12px;
+            box-sizing: border-box;
+        }
+        .section8 .tbody > ul > li.score-tip{
+            flex: 1;
+            justify-content: center;
+            padding: 5px;
+        }
+        .section8 .tbody > ul > li.score-tip > span{
+            width: auto;
+        }
+        .section8 .tbody > div{
+            flex: 1;
+            box-sizing: border-box;
+            padding: 5px;
+            border-left: 1px solid #000;
+        }
+        .section8 .tbody > div strong{
             margin-bottom: 5px;
             display: block;
         }
-        .section8 tbody tr:first-of-type td:last-of-type div[contenteditable="true"]{
-            height: 175px;
+        .section8 div[contenteditable="true"]{
+            height: 176px;
+            border: 1px solid #bbb;
+            border-radius: 3px;
+            box-sizing: border-box;
         }
-        .section8 .score{
+        .section8 ul.score{
             list-style: none;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0;
             padding: 0;
+            border-left: 1px solid #000;
+            padding: 3px;
         }
         .section8 .score li{
             width: 24px;
@@ -449,124 +483,123 @@
             </div>
             <div class="section2">
                 <h3><span class="diamond"></span> 목장원 가정의 특이사항(입원, 경조사, 새교우, 이사 주소, 전화번호 변경 등)</h3>
-                <table>
+                <table id="specialList">
                     <colgroup>
                         <col width="100">
                         <col>
+                        <!-- <col width="50"> -->
                     </colgroup>
                     <thead>
                         <tr>
                             <th>이름</th>
                             <th>내 용</th>
+                            <!-- <th></th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                            <!-- <td>-</td> -->
                         </tr>
                         <tr>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                            <!-- <td>-</td> -->
                         </tr>
                         <tr>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
+                            <!-- <td>-</td> -->
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="section8">
-                <table>
-                    <colgroup>
-                        <col width="150">
-                        <col width="140">
-                        <col>
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th colspan="3">
-                                <span>총원:<strong id="totalCnt">0 명</strong></span>
-                                <span>출석:<strong id="chkedCnt">0 명</strong></span>
-                                <span>방문자: <input type="text" />명</span>
-                                <span>방문사역자: <input type="text" />명</span>
-                                <span>어린이: <input type="text" />명</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>목</strong>장원들을 환영</td>
-                            <td>
+                <div class="table">
+                    <div class="thead">
+                        <span>총원:<strong id="totalCnt">0 명</strong></span>
+                        <span>출석:<strong id="chkedCnt">0 명</strong></span>
+                        <span>방문자: <input type="text" />명</span>
+                        <span>방문사역자: <input type="text" />명</span>
+                        <span>어린이: <input type="text" />명</span>
+                    </div>
+                    <div class="tbody">
+                        <ul>
+                            <li>
+                                <span><strong>목</strong>장원들을 환영</span>
                                 <ul data-id="score" class="score">
                                     <li>0</li>
                                     <li>1</li>
                                     <li>2</li>
                                     <li>3</li>
+                                    <li>4</li>
                                 </ul>
-                            </td>
-                            <td rowspan="6">
-                                <strong>평가, 간증, 문제점, 건의사항</strong>
-                                <div oninput="resizeTxtarea(this, 175)" contenteditable="true"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>장</strong>맛비 같은 찬양과 경배</td>
-                            <td>
+                            </li>
+                            <li>
+                                <span><strong>장</strong>맛비 같은 찬양과 경배</span>
                                 <ul data-id="score" class="score">
                                     <li>0</li>
                                     <li>1</li>
                                     <li>2</li>
                                     <li>3</li>
+                                    <li>4</li>
                                 </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>교</strong>제(말씀)를 통한 삶 나눔</td>
-                            <td>
+                            </li>
+                            <li>
+                                <span><strong>교</strong>제(말씀)를 통한 삶 나눔</span>
                                 <ul data-id="score" class="score">
                                     <li>0</li>
                                     <li>1</li>
                                     <li>2</li>
                                     <li>3</li>
+                                    <li>4</li>
                                 </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>회</strong>원을 기도와 돌봄으로 섬김</td>
-                            <td>
+                            </li>
+                            <li>
+                                <span><strong>회</strong>원을 기도와 돌봄으로 섬김</span>
                                 <ul data-id="score" class="score">
                                     <li>0</li>
                                     <li>1</li>
                                     <li>2</li>
                                     <li>3</li>
+                                    <li>4</li>
                                 </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>모</strong>든 사람이 사역에 참여</td>
-                            <td>
+                            </li>
+                            <li>
+                                <span><strong>모</strong>든 사람이 사역에 참여</span>
                                 <ul data-id="score" class="score">
                                     <li>0</li>
                                     <li>1</li>
                                     <li>2</li>
                                     <li>3</li>
+                                    <li>4</li>
                                 </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>임</strong>재하신 성령 안에서 마무리</td>
-                            <td>
+                            </li>
+                            <li>
+                                <span><strong>임</strong>재하신 성령 안에서 마무리</span>
                                 <ul data-id="score" class="score">
                                     <li>0</li>
                                     <li>1</li>
                                     <li>2</li>
                                     <li>3</li>
+                                    <li>4</li>
                                 </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </li>
+                            <li class="score-tip">
+                                <span>0: 하지않음</span>
+                                <span>1: 빈약함</span>
+                                <span>2: 보통</span>
+                                <span>3: 좋음</span>
+                                <span>4: 매우좋음</span>
+                            </li>
+                        </ul>
+                        <div>
+                            <strong>평가, 간증, 문제점, 건의사항</strong>
+                            <div oninput="resizeTxtarea(this, 176)" contenteditable="true"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="section4">
                 <div>
@@ -607,13 +640,21 @@
 
         btnCapture.addEventListener('click', () => {
 
-            document.querySelectorAll('[data-id="border-hidden"]').forEach((tag) => {
-                tag.classList.add('on');
-            })
+            document.querySelectorAll('[data-id="border-hidden"]').forEach((tag) => tag.classList.add('on'));
+            wrapper.classList.add('with-watermark');
+            // specialList.querySelectorAll('colgroup col')[2].remove();
+            // specialList.querySelectorAll('thead tr th')[2].style.display = 'none';
+            // specialList.querySelectorAll('tbody tr').forEach((tr) => {
+            //     tr.querySelectorAll('td')[2].style.display = 'none';
+            // })
             html2canvas(wrapper).then(function(canvas) {
-                document.querySelectorAll('[data-id="border-hidden"]').forEach((tag) => {
-                    tag.classList.remove('on');
-                })
+                document.querySelectorAll('[data-id="border-hidden"]').forEach((tag) => tag.classList.remove('on'));
+                wrapper.classList.remove('with-watermark');
+                // specialList.querySelector('colgroup').innerHTML += `<col width="50">`;
+                // specialList.querySelectorAll('thead tr th')[2].style.display = 'table-cell';
+                // specialList.querySelectorAll('tbody tr').forEach((tr) => {
+                //     tr.querySelectorAll('td')[2].style.display = 'table-cell';
+                // })
 
                 dimLayer.classList.add('on');
 
