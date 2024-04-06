@@ -93,7 +93,7 @@
             box-sizing: border-box;
         }
         .wrapper2.with-watermark{
-            background: url(./assets/img/logo_gray.jpg) no-repeat center/55%;
+            background: url(./assets/img/logo_gray2.jpg) no-repeat center/55%;
         }
         h1{
             margin: 0;
@@ -154,7 +154,6 @@
             text-align: center;
         }
         input[type="date"]{width: 120px; text-align: center; background: #fff;}
-        input[type="time"]{width: 115px; text-align: center; background: #fff;}
         .section1 .table-top > div{
             display: flex;
             justify-content: center;
@@ -248,20 +247,24 @@
         .section1 .table .tbody > div > div:nth-of-type(4){width: 40px;}
         .section1 .table .tbody > div > div:nth-of-type(5){flex: 1;}
         .section1 .table .tbody > div > div:nth-of-type(6){width: 80px; border-right: 0;}
-
-
+        
         .section1 .table .tbody > div > div.opt{
+            display: none;
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             border: 0;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
             justify-content: flex-end;
         }
+        .section1 .table .tbody.with-opt > div > div.opt{
+            display: flex;
+        }
+
         .section1 .table .tbody > div > div.opt button{
             display: flex;
             align-items: center;
@@ -272,6 +275,7 @@
             border-radius: 5px;
             padding: 0 10px;
             color: #fff;
+            cursor: pointer;
         }
         .section1 .table .tbody > div > div.opt button.del{
             background: red;
@@ -283,7 +287,26 @@
             margin: 0;
         }
 
-        
+        .section1 .btns.hidden{
+            display: none;
+        }
+        .section1 .btns{
+            margin-top: 5px;
+            text-align: right;
+        }
+        .section1 .btns button{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: top;
+            border: 0;
+            border-radius: 5px;
+            width: 80px;
+            height: 30px;
+            background: rgba(0, 0, 255, .4);
+            color: #fff;
+            cursor: pointer;
+        }
         
         .section2 h3{
             font-size: 1rem;
@@ -455,6 +478,7 @@
             border-radius: 10px;
             color: #fff;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .dim-layer{
@@ -545,7 +569,7 @@
                     <div>
                         <div>
                             <span>모임일: </span>
-                            <input type="date" oninput="setWeek(this, week1)"/>
+                            <input type="date" oninput="setWeek(this, week1)" />
                         </div>
                         <div id="week1" class="week">
                             <span></span>
@@ -572,30 +596,10 @@
                         </div>
                     </div>
                     <div id="table1tbody" class="tbody">
-                        <div>
-                            <div>1</div>
-                            <div><div data-id="border-hidden" oninput="resizeTxtarea(this, 32); setTotalCnt()" contenteditable="true"></div></div>
-                            <div>
-                                <label>
-                                    <input type="checkbox" oninput="setChkedCnt()"/>
-                                    <span></span>
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    <input type="checkbox"/>
-                                    <span></span>
-                                </label>
-                            </div>
-                            <div><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></div>
-                            <div><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></div>
-                            <div class="opt">
-                                <button class="add" onclick="add('up')">위에 행 추가</button>
-                                <button class="add" onclick="add('down')">아래 행 추가</button>
-                                <button class="del" onclick="del(this)">삭제</button>
-                            </div>
-                        </div>
                     </div>
+                </div>
+                <div id="table1btns" class="btns">
+                    <button onclick="toggleOpt()">option</button>
                 </div>
             </div>
             <div class="section2">
@@ -604,30 +608,25 @@
                     <colgroup>
                         <col width="100">
                         <col>
-                        <!-- <col width="50"> -->
                     </colgroup>
                     <thead>
                         <tr>
                             <th>이름</th>
                             <th>내 용</th>
-                            <!-- <th></th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
-                            <!-- <td>-</td> -->
                         </tr>
                         <tr>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
-                            <!-- <td>-</td> -->
                         </tr>
                         <tr>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
                             <td><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></td>
-                            <!-- <td>-</td> -->
                         </tr>
                     </tbody>
                 </table>
@@ -759,22 +758,15 @@
 
             document.querySelectorAll('[data-id="border-hidden"]').forEach((tag) => tag.classList.add('on'));
             wrapper.classList.add('with-watermark');
-            // specialList.querySelectorAll('colgroup col')[2].remove();
-            // specialList.querySelectorAll('thead tr th')[2].style.display = 'none';
-            // specialList.querySelectorAll('tbody tr').forEach((tr) => {
-            //     tr.querySelectorAll('td')[2].style.display = 'none';
-            // })
+            table1tbody.classList.remove('with-opt');
+            table1btns.classList.add('hidden');
+            
             html2canvas(wrapper).then(function(canvas) {
                 document.querySelectorAll('[data-id="border-hidden"]').forEach((tag) => tag.classList.remove('on'));
                 wrapper.classList.remove('with-watermark');
-                // specialList.querySelector('colgroup').innerHTML += `<col width="50">`;
-                // specialList.querySelectorAll('thead tr th')[2].style.display = 'table-cell';
-                // specialList.querySelectorAll('tbody tr').forEach((tr) => {
-                //     tr.querySelectorAll('td')[2].style.display = 'table-cell';
-                // })
+                table1btns.classList.remove('hidden');
 
                 dimLayer.classList.add('on');
-
                 imgSection.innerHTML = '';
                 const img = document.createElement('img');
                 img.src = canvas.toDataURL('image/png');
@@ -790,10 +782,10 @@
             imgSection.innerHTML = '';
             dimLayer.classList.remove('on');
         })
-
-        function addTmpl1(){
-            const tr = document.createElement('div');
-            tr.innerHTML = `
+        function makeTmpl1(){
+            const div = document.createElement('div');
+            div.dataset.id = 'tr';
+            div.innerHTML = `
                 <div>1</div>
                 <div><div data-id="border-hidden" oninput="resizeTxtarea(this, 32); setTotalCnt()" contenteditable="true"></div></div>
                 <div>
@@ -811,24 +803,25 @@
                 <div><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></div>
                 <div><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></div>
                 <div class="opt">
-                    <button class="add" onclick="add('up')">위에 행 추가</button>
-                    <button class="add" onclick="add('down')">아래 행 추가</button>
+                    <button class="add" onclick="add(this, 'up')">위에 행 추가</button>
+                    <button class="add" onclick="add(this, 'down')">아래 행 추가</button>
                     <button class="del" onclick="del(this)">삭제</button>
                 </div>
             `;
 
-            table1tbody.appendChild(tr);
+            return div;
+        }
+        function addTmpl1(){
+            table1tbody.appendChild(makeTmpl1());
         }
 
-        for(let i = 0; i < 8; i++){
-            addTmpl1();
-        }
+        for(let i = 0; i < 8; i++) addTmpl1();
 
         autoNum();
 
         function autoNum(){
-            table1tbody.querySelectorAll('tr').forEach((tr, idx) => {
-                tr.querySelectorAll('td')[0].textContent = idx + 1;
+            table1tbody.querySelectorAll(':scope > div').forEach((tr, idx) => {
+                tr.querySelectorAll('div')[0].textContent = idx + 1;
             })
         }
 
@@ -855,8 +848,8 @@
 
         function setChkedCnt(){
             let chkedTotalCnt = 0;
-            table1tbody.querySelectorAll('tr').forEach(tr => {
-                const isChked = tr.querySelectorAll('td')[2].querySelector('input').checked;
+            table1tbody.querySelectorAll(':scope > div').forEach(div => {
+                const isChked = div.querySelectorAll(':scope > div')[2].querySelector('input').checked;
                 if(isChked) chkedTotalCnt++;
             })
 
@@ -865,14 +858,34 @@
 
         function setTotalCnt(){
             let totalCnt2 = 0;
-            table1tbody.querySelectorAll('tr').forEach(tr => {
-                const val = tr.querySelectorAll('td')[1].querySelector('div').textContent;
+            table1tbody.querySelectorAll(':scope > div').forEach(tr => {
+                const val = tr.querySelectorAll(':scope > div')[1].querySelector('div[contenteditable]').textContent;
                 if(val !== '') totalCnt2++;
             })
 
             totalCnt.textContent = totalCnt2 + '명';
         }
+        function add(e, dir){
+            const target = e.closest('[data-id="tr"]')
+            if(dir === 'up'){
+                table1tbody.insertBefore(makeTmpl1(), target);
+            }else if(dir === 'down'){
+                target.insertAdjacentElement('afterend', makeTmpl1());
+            }
+            autoNum();
+        }
+        function del(e){
+            if(!confirm('해당 행을 삭제하시겠습니까?')) return;
+            
+            const isTable1 = e.closest('#table1tbody');
+            e.closest('div[data-id="tr"]').remove();
 
+            if(isTable1) autoNum();
+        }
+
+        function toggleOpt(){
+            table1tbody.classList.toggle('with-opt');
+        }
     </script>
 </body>
 </html>
