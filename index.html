@@ -76,7 +76,7 @@
             margin-top: 0;
             transform: rotate(-45deg);
             opacity: 0;
-            transition: margin .1s .2s cubic-bezier(0.4, 0, 1, 1), opacity 1s .2s;
+            transition: margin .05s .1s cubic-bezier(0.4, 0, 1, 1), opacity .05s .1s;
         }
         .table label input[type="checkbox"]:checked + span:after{
             margin-top: 5px;
@@ -142,10 +142,10 @@
             background: #eee;
         }
 
-
         .section1 .table-top{
             margin-bottom: 10px;
         }
+
         .section1 input, .section4 input{
             border: 0;
             border-bottom: 1px solid #000;
@@ -209,8 +209,6 @@
         .section1 .table .thead > div > div:nth-of-type(3){width: 40px;}
         .section1 .table .thead > div > div:nth-of-type(4){flex: 1;}
         .section1 .table .thead > div > div:nth-of-type(5){width: 80px; border-right: 0;}
-
-        
 
         .section1 .table .tbody > div{
             display: flex;
@@ -300,12 +298,28 @@
             justify-content: center;
             vertical-align: top;
             border: 0;
-            border-radius: 5px;
-            width: 80px;
-            height: 30px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             background: rgba(0, 0, 255, .4);
-            color: #fff;
             cursor: pointer;
+            position: relative;
+        }
+        .section1 .btns button:before,
+        .section1 .btns button:after{
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 4px;
+            background: #fff;
+            border-radius: 8px;
+            top: 50%;
+            left: 50%;
+            margin-top: -2px;
+            margin-left: -12px;
+        }
+        .section1 .btns button:after{
+            transform: rotate(90deg);
         }
         
         .section2 h3{
@@ -358,6 +372,8 @@
             font-size: 12px;
         }
         .section8 .thead{
+            display: flex;
+            align-items: center;
             background: 0;
             padding: 5px;
             border-bottom: 1px solid #000;
@@ -374,10 +390,11 @@
         }
         .section8 .thead input{
             width: 30px;
-            border-radius: 0;
             border: 0;
-            border-bottom: 1px solid #000;
+            border: 1px solid #bbb;
             text-align: center;
+            border-radius: 3px;
+            margin-right: 4px;
         }
         .section8 .tbody{
             display: flex;
@@ -448,6 +465,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            transition: background .05s .2s, color .3s;
         }
         .section8 .score li.on{
             background: orange;
@@ -479,6 +497,10 @@
             color: #fff;
             font-weight: bold;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align:top;
         }
 
         .dim-layer{
@@ -599,11 +621,12 @@
                     </div>
                 </div>
                 <div id="table1btns" class="btns">
-                    <button onclick="toggleOpt()">option</button>
+                    <button onclick="add()"></button>
                 </div>
             </div>
             <div class="section2">
                 <h3><span class="diamond"></span> 목장원 가정의 특이사항(입원, 경조사, 새교우, 이사 주소, 전화번호 변경 등)</h3>
+                <!-- <div class="table"></div> -->
                 <table id="specialList">
                     <colgroup>
                         <col width="100">
@@ -755,10 +778,8 @@
         }
 
         btnCapture.addEventListener('click', () => {
-
             document.querySelectorAll('[data-id="border-hidden"]').forEach((tag) => tag.classList.add('on'));
             wrapper.classList.add('with-watermark');
-            table1tbody.classList.remove('with-opt');
             table1btns.classList.add('hidden');
             
             html2canvas(wrapper).then(function(canvas) {
@@ -782,11 +803,12 @@
             imgSection.innerHTML = '';
             dimLayer.classList.remove('on');
         })
+
         function makeTmpl1(){
             const div = document.createElement('div');
             div.dataset.id = 'tr';
             div.innerHTML = `
-                <div>1</div>
+                <div></div>
                 <div><div data-id="border-hidden" oninput="resizeTxtarea(this, 32); setTotalCnt()" contenteditable="true"></div></div>
                 <div>
                     <label>
@@ -802,11 +824,6 @@
                 </div>
                 <div><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></div>
                 <div><div data-id="border-hidden" oninput="resizeTxtarea(this, 32)" contenteditable="true"></div></div>
-                <div class="opt">
-                    <button class="add" onclick="add(this, 'up')">위에 행 추가</button>
-                    <button class="add" onclick="add(this, 'down')">아래 행 추가</button>
-                    <button class="del" onclick="del(this)">삭제</button>
-                </div>
             `;
 
             return div;
@@ -865,13 +882,8 @@
 
             totalCnt.textContent = totalCnt2 + '명';
         }
-        function add(e, dir){
-            const target = e.closest('[data-id="tr"]')
-            if(dir === 'up'){
-                table1tbody.insertBefore(makeTmpl1(), target);
-            }else if(dir === 'down'){
-                target.insertAdjacentElement('afterend', makeTmpl1());
-            }
+        function add(){
+            table1tbody.appendChild(makeTmpl1());
             autoNum();
         }
         function del(e){
@@ -881,10 +893,6 @@
             e.closest('div[data-id="tr"]').remove();
 
             if(isTable1) autoNum();
-        }
-
-        function toggleOpt(){
-            table1tbody.classList.toggle('with-opt');
         }
     </script>
 </body>
